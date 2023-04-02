@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_package="org.example.stubs";
+service BankService{
+  rpc convert(ConvertCurrencyRequest) returns (ConvertCurrencyResponse); // Unary Model
+  rpc getCurrencyStream(ConvertCurrencyRequest) returns (stream ConvertCurrencyResponse); // Server Stream Model
+  rpc performStream(stream ConvertCurrencyRequest) returns (ConvertCurrencyResponse); // Client Stream Model
+  rpc fullStream(stream ConvertCurrencyRequest) returns (stream ConvertCurrencyResponse); // Bidirectionnel Stream Model
+}
+
+message ConvertCurrencyRequest{
+  string currencyFrom = 1;
+  string currencyTo = 2;
+  double amount = 3;
+}
+
+message ConvertCurrencyResponse{
+  string currencyFrom = 1;
+  string currencyTo = 2;
+  double amount = 3;
+  double result = 4;
+}
